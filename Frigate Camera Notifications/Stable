@@ -551,7 +551,7 @@ trigger:
       action: "silence-{{ camera }}"
     id: silence
   - platform: mqtt
-    topic: frigate/events
+    topic: frigate/custom_events
     payload: "{{ camera }}/new"
     value_template: "{{ value_json['after']['camera'] | lower | replace('-','_') }}/{{ value_json['type']}}"
     id: frigate-event
@@ -836,7 +836,7 @@ action:
               sequence:
                 - wait_for_trigger:
                     - platform: mqtt
-                      topic: frigate/events
+                      topic: frigate/custom_events
                       payload: "{{ id }}"
                       value_template: "{{ value_json['after']['id'] }}"
                   timeout:
